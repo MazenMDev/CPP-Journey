@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🚀 C++ Practice Repository
 
 Welcome to my **C++ Practice** repository! Here, I upload my C++ learning journey, including functions, arrays, and object-oriented programming.
@@ -19,3 +20,6 @@ Stay tuned! 😃
 
 ---
 👨‍💻 *Mazen Mahmoud*
+=======
+# Test Repo
+>>>>>>> 421d617 (First commit)
