@@ -1,19 +1,21 @@
 #include <iostream>
 using namespace std;
 int main(){
-    int x[5][8];
-    for(int r=0; r<5; r++){
-        for(int c=0; c<8; c++){
+    int x[100][200];
+    cout << "Write the matrix:"<< endl;
+    for(int r=0; r<100; r++){
+        for(int c=0; c<200; c++){
             cin>>x[r][c];
         }
     }
     int number;
+    cout << "Select the target number: ";
     cin>>number;
 
     int l = 0;
     int posr1,posr2,posc1,posc2;
-    for(int r=0; r<5; r++){
-        for(int c=0; c<8; c++){
+    for(int r=0; r<100; r++){
+        for(int c=0; c<200; c++){
             if (x[r][c] == number && l == 0)
             {
                 posr1 = r;
@@ -35,5 +37,5 @@ int main(){
         }
     }
 
-    cout << tot << endl;
+    cout << "The Sum is: " << tot << endl;
 }
