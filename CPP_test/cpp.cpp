@@ -13,7 +13,7 @@ int main() {
         x = (rand() % 10) + 1;
         cout << "The number is: " << x << endl;
         
-        std::this_thread::sleep_for(std::chrono::seconds(3));  // Correct usage
+        this_thread::sleep_for(chrono::seconds(3));  // Correct usage
         
         if (x == 5) {
             break;
