@@ -10,31 +10,41 @@ int main(){
         }
     }
     
-    for(int r=0; r<20; r++){
-        for(int c=0; c<20; c++){
-            posr = r;
-            posc = c;
-            if (true)/*condition*/
-            {
-                /* the condition of range*/
-                for(;;){
-                    tot += x[posc][posr];
-                    posr++;
-                    if (posr == c)
-                    {
-                        posc--;
+    for(;;){
+        for(int r=0; r<20; r++){
+            for(int c=0; c<20; c++){
+                posr = r;
+                posc = c;
+                if (true)/*condition*/
+                {
+                    /* the condition of range*/
+                    for(;;){
+                        tot += x[posc][posr];
+                        posr++;
+                        if (posr == c)
+                        {
+                            posc--;
+                        }
+                        if (x[posc][posc] == x[r][c])
+                        {
+                            break;
+                        }
+                        
                     }
-                    if (x[posc][posc] == x[r][c])
-                    {
-                        break;
-                    }
-                    
-                    
                 }
+                
             }
-            
-            
-            
+        }
+        if((posr+1==4 && posc-1==0 )&&(posr+1==4 && posc+1==4 )){
+            break;
+        }
+    }
+
+
+
+    for(; ;){
+        for(; ;){
+            // the triangle with the largest sum
         }
     }
 }
