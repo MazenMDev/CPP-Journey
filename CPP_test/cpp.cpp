@@ -2,7 +2,7 @@
 #include <ctime>
 #include <chrono>
 #include <thread>
-
+#include <cstdlib>
 using namespace std;
 
 int main() {
@@ -20,6 +20,7 @@ int main() {
         }
 
         cout << "Wait 3 seconds to generate again..." << endl;
+        system("cls");
     }
 
     cout << "We found it! :)" << endl;
