@@ -15,7 +15,7 @@ struct team
     player p[100];
 };
 
-void main(){
+int main(){
     int yi;
     team t;
     for(int i=0; i<100; i++){
@@ -26,4 +26,5 @@ void main(){
         cin>>t.p[i].salary;
     }
 
+    return 0;
 }
