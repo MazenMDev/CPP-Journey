@@ -14,17 +14,20 @@ bool comparebyprice(car a, car b){
 }
 
 int main(){
-    const int size = 5;
-    car cars[size];
+    int size;
+    cin>>size;
+    car* c = new car[size];
 
     for(int i=0; i<size; i++){
-        cin>>cars[i].brand;
-        cin>>cars[i].model;
-        cin>>cars[i].price;
+        cin>>c[i].brand;
+        cin>>c[i].model;
+        cin>>c[i].price;
     }
 
-    sort(cars, cars +size, comparebyprice);
+    sort(c, c +size, comparebyprice);
     for(int i=0; i<size; i++){
-        cout << cars[i].brand << " " << cars[i].model << " " << cars[i].price << endl;  
+        cout << c[i].brand << " " << c[i].model << " " << c[i].price << endl;  
     }
+
+    delete[]c;
 }
