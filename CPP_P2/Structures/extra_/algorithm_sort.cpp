@@ -1,33 +1,37 @@
 #include <iostream>
 #include <algorithm>
+#include <string>
+
 using namespace std;
 
-struct car
-{
+struct Car {
     string brand;
     string model;
     float price;
 };
 
-bool comparebyprice(car a, car b){
+bool compareByPrice(Car a, Car b) {
     return a.price < b.price;
 }
 
-int main(){
+int main() {
     int size;
-    cin>>size;
-    car* c = new car[size];
+    cout << "Enter the number of cars: ";
+    cin >> size;
 
-    for(int i=0; i<size; i++){
-        cin>>c[i].brand;
-        cin>>c[i].model;
-        cin>>c[i].price;
+    Car* c = new Car[size];
+
+    for (int i = 0; i < size; i++) {
+        cout << "Enter brand, model, and price of car " << i + 1 << ":\n";
+        cin >> c[i].brand >> c[i].model >> c[i].price;
     }
 
-    sort(c, c +size, comparebyprice);
-    for(int i=0; i<size; i++){
-        cout << c[i].brand << " " << c[i].model << " " << c[i].price << endl;  
+    sort(c, c + size, compareByPrice);
+
+    cout << "\nCars sorted by price:\n";
+    for (int i = 0; i < size; i++) {
+        cout << c[i].brand << " " << c[i].model << " $" << c[i].price << endl;
     }
 
-    delete[]c;
+    delete[] c;
 }
