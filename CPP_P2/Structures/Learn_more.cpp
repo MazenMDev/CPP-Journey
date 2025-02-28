@@ -20,4 +20,6 @@ int main(){
     for(int i=0; i<N; i++){
         cout << students[i].name << " " << students[i].gpa << endl;
     }
+
+    delete[]students;
 }
