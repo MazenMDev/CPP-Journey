@@ -3,7 +3,7 @@
 using namespace std;
 
 struct player {
-    string name;  // Using string for better input handling
+    string name;  
     int rank[5];
     float salary;
 };
@@ -11,34 +11,30 @@ struct player {
 struct team {
     string name;
     int rank;
-    player* p;  // Pointer for dynamic memory allocation
+    player* p;
 };
 
 int main() {
     int numPlayers;
     
-    // Ask user for the number of players
     cout << "Enter the number of players in the team: ";
     cin >> numPlayers;
     
-    // Validate input
     if (numPlayers <= 0) {
         cout << "Invalid number of players!" << endl;
         return 1;
     }
 
     team t;
-    t.p = new player[numPlayers];  // Allocate memory dynamically
+    t.p = new player[numPlayers];
 
-    // Input team name and rank
     cout << "Enter team name: ";
-    cin.ignore();  // Ignore leftover newline character
+    cin.ignore();
     getline(cin, t.name);
     
     cout << "Enter team rank: ";
     cin >> t.rank;
 
-    // Input player details
     for (int i = 0; i < numPlayers; i++) {
         cout << "\nEnter details for player " << i + 1 << ":\n";
         
@@ -55,7 +51,29 @@ int main() {
         cin >> t.p[i].salary;
     }
 
-    // Display entered information
+    // Calculate average salary
+    float totalSalary = 0;
+    for (int i = 0; i < numPlayers; i++) {
+        totalSalary += t.p[i].salary;
+    }
+    float avgSalary = totalSalary / numPlayers;
+
+    // Find highest-ranked player (sum of rank array)
+    int highestRankIndex = 0;
+    int highestRankScore = 0;
+
+    for (int i = 0; i < numPlayers; i++) {
+        int sum = 0;
+        for (int j = 0; j < 5; j++) {
+            sum += t.p[i].rank[j];
+        }
+        if (sum > highestRankScore) {
+            highestRankScore = sum;
+            highestRankIndex = i;
+        }
+    }
+
+    // Display team information
     cout << "\nTeam Name: " << t.name << "\nTeam Rank: " << t.rank << endl;
     cout << "\nPlayer Details:\n";
     
@@ -70,9 +88,28 @@ int main() {
         cout << "\nSalary: $" << t.p[i].salary << "\n";
     }
 
-    // Free dynamically allocated memory
-    delete[] t.p;
+    cout << "\nAverage Team Salary: $" << avgSalary << endl;
+    cout << "Highest Ranked Player: " << t.p[highestRankIndex].name << " (Score: " << highestRankScore << ")\n";
 
+    // Search for a player
+    string searchName;
+    cout << "\nEnter a player name to search: ";
+    cin.ignore();
+    getline(cin, searchName);
+    
+    bool found = false;
+    for (int i = 0; i < numPlayers; i++) {
+        if (t.p[i].name == searchName) {
+            cout << "Player Found: " << t.p[i].name << "\nSalary: $" << t.p[i].salary << endl;
+            found = true;
+            break;
+        }
+    }
+    if (!found) {
+        cout << "Player not found!\n";
+    }
+
+    delete[] t.p;
     cout << "\nMemory cleared. Program finished successfully!" << endl;
 
     return 0;
