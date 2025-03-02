@@ -14,17 +14,6 @@ struct team {
     player* p;
 };
 
-// Function to sort players by salary (descending order)
-void sortBySalary(player* p, int numPlayers) {
-    for (int i = 0; i < numPlayers - 1; i++) {
-        for (int j = i + 1; j < numPlayers; j++) {
-            if (p[i].salary < p[j].salary) {
-                swap(p[i], p[j]);  // Swap players if out of order
-            }
-        }
-    }
-}
-
 int main() {
     int numPlayers;
     
@@ -62,16 +51,62 @@ int main() {
         cin >> t.p[i].salary;
     }
 
-    // Sort players by salary
-    sortBySalary(t.p, numPlayers);
+    // Calculate average salary
+    float totalSalary = 0;
+    for (int i = 0; i < numPlayers; i++) {
+        totalSalary += t.p[i].salary;
+    }
+    float avgSalary = totalSalary / numPlayers;
 
-    // Display sorted player details
-    cout << "\nPlayers sorted by salary (highest to lowest):\n";
+    // Find highest-ranked player (sum of rank array)
+    int highestRankIndex = 0;
+    int highestRankScore = 0;
+
+    for (int i = 0; i < numPlayers; i++) {
+        int sum = 0;
+        for (int j = 0; j < 5; j++) {
+            sum += t.p[i].rank[j];
+        }
+        if (sum > highestRankScore) {
+            highestRankScore = sum;
+            highestRankIndex = i;
+        }
+    }
+
+    // Display team information
+    cout << "\nTeam Name: " << t.name << "\nTeam Rank: " << t.rank << endl;
+    cout << "\nPlayer Details:\n";
+    
     for (int i = 0; i < numPlayers; i++) {
         cout << "----------------------\n";
         cout << "Player " << i + 1 << ":\n";
         cout << "Name: " << t.p[i].name << "\n";
-        cout << "Salary: $" << t.p[i].salary << "\n";
+        cout << "Ranks: ";
+        for (int j = 0; j < 5; j++) {
+            cout << t.p[i].rank[j] << " ";
+        }
+        cout << "\nSalary: $" << t.p[i].salary << "\n";
+    }
+
+    cout << "\nAverage Team Salary: $" << avgSalary << endl;
+    cout << "Highest Ranked Player: " << t.p[highestRankIndex].name << " (Score: " << highestRankScore << ")\n";
+
+    // Search for a player
+    string searchName;
+    cout << "\nEnter a player name to search: ";
+    cin.ignore();
+    getline(cin, searchName);
+    
+    bool found = false;
+    for (int i = 0; i < numPlayers; i++) {
+        if (t.p[i].name == searchName) {
+            cout << "Player Found: " << t.p[i].name << "\nSalary: $" << t.p[i].salary << endl;
+            found = true;
+            break;
+        }
+    }
+    if (!found) {
+        cout << "Player not found!\n";
     }
 
     delete[] t.p;
