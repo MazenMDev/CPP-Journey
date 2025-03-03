@@ -11,32 +11,22 @@ int main(){
     string s;
     for(int i=0; i<N; i++){
         cin>>s;
-        for(int k=0;k < s.length(); k++){
-            if(!isVowel(s[k]) && isVowel(s[k+1])) //b + a
+        for(int k=0; k<s.length; k++){
+            if (isVowel(s[k]))    
             {
-                if(!isVowel(s[k-1] && !isVowel(s[k+2]))) // before b is d
-                {
-                    cout << s[k];
-                }
-                else{
-                    cout << ".";
-                    cout << s[k];
-                }
+                cout << s[k];
             }
-            if (!isVowel(s[k]) && !isVowel(s[k+1])) // d + b
+            if ((!isVowel(s[k]))&&(isVowel(k+1))&&(isVowel(s[k-1])))
             {
-                if (!isVowel(s[k+2]))
-                {
-                    cout << s[k];
-                }
-                else{
-                    cout << s[k];
-                    cout << ".";
-                }
+                cout << ".";
+                cout << s[k];
             }
-            
-            if(isVowel(s[k]) && !isVowel(s[k-1]))
+            else if ((!isVowel(s[k]))&&(!isVowel(s[k-1])))
             {
+                cout << ".";
+                cout << s[k];
+            }
+            else{
                 cout << s[k];
             }
         }
