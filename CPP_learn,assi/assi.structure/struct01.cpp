@@ -16,16 +16,29 @@ struct poly {
 
 int main() {
 	int N;
+	cout << "Enter number of equations: ";
 	cin >> N;
 	poly* p = new poly[N];
 	for (int i = 0; i < N; i++) {
+		cout << endl;
+		cout << "Equations number " << i + 1 << ": " << endl;
+		cout << "Enter number of terms: ";
 		cin >> p[i].number;
 		p[i].t = new term[p[i].number];
 		for (int k = 0; k < p[i].number; k++) {
-			cin >> p[i].t[k].conf >> p[i].t[k].power >> p[i].t[k].value >> p[i].t[k].name;
+			cout << "Enter the coefficient: ";
+			cin >> p[i].t[k].conf;
+			cout << "Enter the power: ";
+			cin >> p[i].t[k].power;
+			cout << "Enter the value: ";
+			cin >> p[i].t[k].value;
+			cout << "Enter the name: ";
+			cin >> p[i].t[k].name;
 		}
 	}
+	int g = 1;
 	char name1;
+	cout << "Enter the selected variable: ";
 	cin >> name1;
 	int res, new_power;
 	for (int i = 0; i < N; i++) {
@@ -42,17 +55,22 @@ int main() {
 				{
 					cout << res << p[i].t[k].name << "^" << new_power;
 				}
-				if (k != (p[i].number - 1))
+				if (k == (p[i].number - 1))
 				{
-					cout << " + ";
+					break;
 				}
+				cout << " + ";
 			}
 		}
 		cout << endl;
 	}
 	int s_power;
 	char s_name;
-	cin >> s_power >> s_name;
+	cout << endl;
+	cout << "Enter Selected power: ";
+	cin >> s_power;
+	cout << "Enter Selected name: ";
+	cin >> s_name;
 	int result = -1;
 	int nu;
 	for (int i = 0; i < N; i++) {
@@ -68,8 +86,10 @@ int main() {
 			}
 		}
 	}
+
 	for (int i = 0; i < N; i++) {
 		delete[]p[i].t;
 	}
 	delete[]p;
+
 }
