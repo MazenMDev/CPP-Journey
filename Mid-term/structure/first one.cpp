@@ -3,7 +3,12 @@ using namespace std;
 
 struct first 
 {
-    /* data */
+    /* Info 1 */
+};
+
+struct second
+{
+    /* Info 2 */
 };
 
 
