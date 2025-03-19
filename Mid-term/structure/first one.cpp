@@ -7,7 +7,7 @@ struct first
 };
 
 struct second
-{
+{    
     /* Info 2 */
 };
 
