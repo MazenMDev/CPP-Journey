@@ -31,13 +31,11 @@ int main() {
             cin >> c[i].B[k].card;
             cin >> c[i].B[k].plastic;
             cin >> c[i].B[k].can;
-
             if (c[i].B[k].flats > Max_flats)
             {
                 Max_flats = c[i].B[k].flats;
                 Max_cans = c[i].B[k].can;
             }
-
         }
     }
 
