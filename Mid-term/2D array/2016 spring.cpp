@@ -65,4 +65,17 @@ int main() {
         }
         cout << endl;
     }
+
+    for(int r=0; r<m; r++){
+        delete[] x[r];
+    }
+    delete[] x;
+
+    for(int r=0; r<ry; r++){
+        delete[] y[r];
+    }
+    delete[] y;
+    delete[] ly;
+
+    return 0;   
 }
