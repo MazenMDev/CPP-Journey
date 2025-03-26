@@ -59,8 +59,8 @@ int main() {
 		ry++;
 	}
 
-    for(int i=0; i<m; i++){
-        for(int j=0; j<n; j++){
+    for(int i=0; i<ry; i++){
+        for(int j=0; j<ly[i]; j++){
             cout << y[i][j] << " ";
         }
         cout << endl;
