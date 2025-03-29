@@ -53,6 +53,7 @@ int main() {
             cout << "Exiting calculator :(" << endl;
         }
         else cout << "Invalid number.. Try again" << endl;
+        cout << "\033[2J\033[H";
     } while (choice != 5);
 
     return 0;
