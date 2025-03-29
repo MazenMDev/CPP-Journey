@@ -1,4 +1,6 @@
 #include <iostream>
+#include <chrono>
+#include <thread>
 using namespace std;
 
 void menu() {
@@ -53,6 +55,7 @@ int main() {
             cout << "Exiting calculator :(" << endl;
         }
         else cout << "Invalid number.. Try again" << endl;
+        std::this_thread::sleep_for(std::chrono::seconds(1));
         cout << "\033[2J\033[H";
     } while (choice != 5);
 
