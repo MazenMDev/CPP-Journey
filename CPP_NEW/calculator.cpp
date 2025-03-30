@@ -101,8 +101,8 @@ int main() {
         }
         else if (choice == 8) cout << "Exiting calculator :(" << endl;
         else cout << "Invalid number.. Try again" << endl;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');  
         cout << "\nPress Enter to continue...";
-        cin.ignore();  
         cin.get();  
         system(CLEAR_SCREEN);
     } while (choice != 8);
