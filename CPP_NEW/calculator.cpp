@@ -1,6 +1,4 @@
 #include <iostream>
-#include <chrono>
-#include <thread>
 #include <cmath>
 using namespace std;
 
@@ -97,7 +95,9 @@ int main() {
         }
         else if (choice == 8) cout << "Exiting calculator :(" << endl;
         else cout << "Invalid number.. Try again" << endl;
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        cout << "\nPress Enter to continue...";
+        cin.ignore();  
+        cin.get();  
         cout << "\033[2J\033[H";
     } while (choice != 8);
 
