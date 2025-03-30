@@ -8,6 +8,7 @@ using namespace std;
     #define CLEAR_SCREEN "clear" // Linux/macOS
 #endif
 
+// Function to display the calculator menu
 void menu() {
     cout << "___The Calculator___" << endl;
     cout << "1. Addition (+)" << endl;
@@ -21,10 +22,11 @@ void menu() {
     cout << "============================" << endl;
 }
 
+// Function to calculate the factorial of a number
 long long factorial(int num) {
     if (num < 0) {
         cout << "Error! Factorial of a negative number is not allowed." << endl;
-        return -1;
+        return -1; // Returning -1 to indicate an error
     }
     long long fact = 1;
     for (int i = 2; i <= num; i++) {
@@ -39,9 +41,11 @@ int main() {
     do
     {
         cout << endl;
-        menu();
+        menu(); // Display menu options
         cout << "Enter the operation: ";
         cin >> choice;
+        
+        // Handling basic arithmetic operations
         if (choice > 0 && choice < 5)
         {
             cout << "First number: ";
@@ -71,6 +75,7 @@ int main() {
                 break;  
             }
         }
+        // Handling square root operation
         else if (choice == 5) {
             cout << "Enter Number: ";
             cin >> num1;
@@ -81,6 +86,7 @@ int main() {
             }
             else cout << "Error! negative number not allowed." << endl;
         }
+        // Handling power operation
         else if (choice == 6) {
             cout << "Base: ";
             cin >> num1;
@@ -89,6 +95,7 @@ int main() {
             result = pow(num1, num2);
             cout << "Result: " << result << endl;
         }
+        // Handling factorial operation
         else if (choice == 7) {
             cout << "Enter an integer: ";
             int num;
@@ -99,8 +106,12 @@ int main() {
                 cout << "Result: " << FactResult << endl;
             }
         }
+        // Handling exit option
         else if (choice == 8) cout << "Exiting calculator :(" << endl;
+        // Handling invalid input
         else cout << "Invalid number.. Try again" << endl;
+        
+        // Pause execution before clearing the screen
         cin.ignore(numeric_limits<streamsize>::max(), '\n');  
         cout << "\nPress Enter to continue...";
         cin.get();  
