@@ -87,8 +87,9 @@ int main() {
         }
         else if (choice == 7) {
             cout << "Enter an integer: ";
-            cin >> num1;
-            long long FactResult = factorial(num1);
+            int num;
+            cin >> num;
+            long long FactResult = factorial(num);
             if (FactResult != -1)
             {
                 cout << "Result: " << FactResult << endl;
