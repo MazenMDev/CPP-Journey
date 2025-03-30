@@ -12,8 +12,21 @@ void menu() {
     cout << "4. Division (/)" << endl;
     cout << "5. Square Root (√)" << endl;
     cout << "6. Power (^)" << endl;
-    cout << "7. Exit" << endl;
+    cout << "7. " << endl;
+    cout << "8. Exit" << endl;
     cout << "============================" << endl;
+}
+
+long long factorial(int num) {
+    if (num < 0) {
+        cout << "Error! Factorial of a negative number is not allowed." << endl;
+        return -1;
+    }
+    long long fact = 1;
+    for (int i = 2; i <= num; i++) {
+        fact *= i;  
+    }
+    return fact;
 }
 
 int main() {
@@ -72,11 +85,20 @@ int main() {
             result = pow(num1, num2);
             cout << "Result: " << result << endl;
         }
-        else if (choice == 7) cout << "Exiting calculator :(" << endl;
+        else if (choice == 7) {
+            cout << "Enter an integer: ";
+            cin >> num1;
+            long long FactResult = factorial(num1);
+            if (FactResult != -1)
+            {
+                cout << "Result: " << FactResult << endl;
+            }
+        }
+        else if (choice == 8) cout << "Exiting calculator :(" << endl;
         else cout << "Invalid number.. Try again" << endl;
         std::this_thread::sleep_for(std::chrono::seconds(1));
         cout << "\033[2J\033[H";
-    } while (choice != 7);
+    } while (choice != 8);
 
     return 0;
 }
