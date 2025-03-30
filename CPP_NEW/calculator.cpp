@@ -12,7 +12,7 @@ void menu() {
     cout << "4. Division (/)" << endl;
     cout << "5. Square Root (√)" << endl;
     cout << "6. Power (^)" << endl;
-    cout << "7. " << endl;
+    cout << "7. Factorial (!)" << endl;
     cout << "8. Exit" << endl;
     cout << "============================" << endl;
 }
