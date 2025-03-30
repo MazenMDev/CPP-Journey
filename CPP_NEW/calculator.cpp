@@ -2,6 +2,12 @@
 #include <cmath>
 using namespace std;
 
+#ifdef _WIN32
+    #define CLEAR_SCREEN "cls"  // Windows
+#else
+    #define CLEAR_SCREEN "clear" // Linux/macOS
+#endif
+
 void menu() {
     cout << "___The Calculator___" << endl;
     cout << "1. Addition (+)" << endl;
@@ -98,7 +104,7 @@ int main() {
         cout << "\nPress Enter to continue...";
         cin.ignore();  
         cin.get();  
-        cout << "\033[2J\033[H";
+        system(CLEAR_SCREEN);
     } while (choice != 8);
 
     return 0;
