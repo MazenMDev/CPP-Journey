@@ -71,28 +71,34 @@ int main() {
 
 		for (int r = 0; r < 10; r++) {
 			for (int c = 0; c < 10; c++) {
-				if (x[r][c] == x[r][c + 1] == x[r][c + 2] == x[r][c + 3])
-				{
-					cout << "ver" << endl;
-					if (x[r][c] == 'R')
-						winr = 1;
-					else
-						winb = 1;
-					gameover = 1;
-					break;
+				if(c < 7){
+					if ((x[r][c] == 'R' || x[r][c] == 'B') && x[r][c] == x[r][c + 1] && x[r][c] == x[r][c + 2] && x[r][c] == x[r][c + 3])
+					{
+						cout << "hor" << endl;
+						if (x[r][c] == 'R')
+							winr = 1;
+						else
+							winb = 1;
+						gameover = 1;
+						break;
+					}
 				}
-				if (x[r][c] == x[r + 1][c] == x[r + 2][c] == x[r + 3][c])
-				{
-					cout << "hor" << endl;
-					if (x[r][c] == 'R')
-						winr = 1;
-					else
-						winb = 1;
-					gameover = 1;
-					break;
+
+				if(r > 2){
+					if ((x[r][c] == 'R' || x[r][c] == 'B') && x[r][c] == x[r + 1][c] && x[r][c] ==  x[r + 2][c] && x[r][c] == x[r + 3][c])
+					{
+						cout << "ver" << endl;
+						if (x[r][c] == 'R')
+							winr = 1;
+						else
+							winb = 1;
+						gameover = 1;
+						break;
+					}
 				}
+
 				if (c > 2 && r < 7) {
-					if (x[r][c] == x[r + 1][c - 1] == x[r + 2][c - 2] == x[r + 3][c - 3])
+					if ((x[r][c] == 'R' || x[r][c] == 'B') && x[r][c] == x[r + 1][c - 1] && x[r][c] == x[r + 2][c - 2] && x[r][c] == x[r + 3][c - 3])
 					{
 						cout << "up right" << endl;
 						if (x[r][c] == 'R')
@@ -103,9 +109,10 @@ int main() {
 						break;
 					}
 				}
+
 				if (r < 7 && c < 7)
 				{
-					if (x[r][c] == x[r + 1][c + 1] == x[r + 2][c + 2] == x[r + 3][c + 3])
+					if ((x[r][c] == 'R' || x[r][c] == 'B') && x[r][c] == x[r + 1][c + 1] && x[r][c] == x[r + 2][c + 2] && x[r][c] == x[r + 3][c + 3])
 					{
 						cout << "up left" << endl;
 						if (x[r][c] == 'R')
