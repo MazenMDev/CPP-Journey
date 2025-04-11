@@ -33,7 +33,14 @@ int main() {
 		//
 
 		//fill the R and B
+		
+		cout << "Enter number between 0 - 9: ";
 		cin >> number;
+		while (number > 9 || number < 0) {
+			cout << "Enter valid number: ";
+			cin >> number;
+		}
+	
 		if (x[h][number] != 'R' && x[h][number] != 'B')
 		{
 			ct = -1;
@@ -57,8 +64,8 @@ int main() {
 			}
 		}
 		//fill the R and B
-		//
-	
+		//	
+		
 		//print
 		for (int r = 0; r < 10; r++) {
 			for (int c = 0; c < 10; c++) {
