@@ -70,7 +70,7 @@ int main() {
 	for (;;) {
 		cin >> move;
 		r = movever;
-	    c = movehor;
+		c = movehor;
 		movehero(move, movever, movehor,ct);
 		if (x[movever][movehor] != '#' && movever >= 0 && movever < 5 && movehor >= 0 && movehor < 5)
 		{
@@ -94,6 +94,11 @@ int main() {
 		}
 		cout << endl;
 		cout << movever << " " << movehor << endl << endl;
+		if (x[movever][movehor] == '@')
+		{
+			cout << "Victory!\n";
+			break;
+		}
 		for (int r = 0; r < 5; r++) {
 			for (int c = 0; c < 5; c++) {
 				cout << x[r][c] << " ";
