@@ -21,13 +21,36 @@ void movehero(char move, int& row, int& col, int& ct) {
 }
 
 int main() {
-	char x[5][5] = {
-		{'#','_','@','#','_'},
-		{'_','#','#','_','_'},
-		{'_','_','#','#','#'},
-		{'_','_','#','_','_'},
-		{'_','^','_','_','_'}
-	};
+	char x[20][20];
+	int checkhero = 0;
+	int checktarget = 0;
+	for (int r = 0; r < 5; r++) {
+		for (int c = 0; c < 5; c++) {
+			cin >> x[r][c];
+			if (x[r][c] == '^')
+				checkhero++;
+			if (x[r][c] == '@')
+				checktarget++;
+			if (checkhero > 1)
+			{
+				cin >> x[r][c];
+				while (x[r][c] == '^')
+				{
+					cin >> x[r][c];
+				}
+			}
+			if (checktarget> 1)
+			{
+				cin >> x[r][c];
+				while (x[r][c] == '@')
+				{
+					cin >> x[r][c];
+				}
+			}
+			
+		}
+	}
+
 	for (int r = 0; r < 5; r++) {
 		for (int c = 0; c < 5; c++) {
 			cout << x[r][c] << " ";
@@ -46,8 +69,8 @@ int main() {
 	movehor = c;
 	for (;;) {
 		cin >> move;
-		 r = movever;
-		 c = movehor;
+		r = movever;
+	    c = movehor;
 		movehero(move, movever, movehor,ct);
 		if (x[movever][movehor] != '#' && movever >= 0 && movever < 5 && movehor >= 0 && movehor < 5)
 		{
@@ -78,5 +101,4 @@ int main() {
 			cout << endl;
 		}
 	}
-
 }
