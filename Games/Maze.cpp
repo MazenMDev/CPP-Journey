@@ -1,15 +1,23 @@
 #include <iostream>
 using namespace std;
 
-void movehero(char move, int& r, int& c) {
-	if (move == 'w')
-		r--;
-	else if (move == 's')
-		r++;
-	else if (move == 'a')
-		c--;
-	else if (move == 'd')
-		c++;
+void movehero(char move, int& row, int& col, int& ct) {
+	if (move == 'w') {
+		row--;
+		ct = 0;
+	}
+	else if (move == 's') {
+		row++;
+		ct = 1;
+	}
+	else if (move == 'a'){
+		col--;
+		ct = 2;
+	}
+	else if (move == 'd') {
+		col++;
+		ct = 3;
+	}
 }
 
 int main() {
@@ -33,18 +41,33 @@ int main() {
 	int z;
 	int r = 4;
 	int c = 1;	
+	int ct = -1;
 	movever = r;
 	movehor = c;
 	for (;;) {
 		cin >> move;
-		r = movever;
-	    c = movehor;
-		movehero(move, movever, movehor);
-		if (x[movever][movehor] != '#')
+		 r = movever;
+		 c = movehor;
+		movehero(move, movever, movehor,ct);
+		if (x[movever][movehor] != '#' && movever >= 0 && movever < 5 && movehor >= 0 && movehor < 5)
 		{
 			z = x[movever][movehor];
 			x[movever][movehor] = x[r][c];
 			x[r][c] = z;
+		}
+		else 
+		{
+			cout << endl;
+			cout << ct << endl;
+			cout << endl;
+			if (ct == 0)
+				movever++;
+			else if (ct == 1)
+				movever--;
+			else if (ct == 2)
+				movehor++;
+			else if (ct == 3)
+				movehor--;
 		}
 		cout << endl;
 		cout << movever << " " << movehor << endl << endl;
