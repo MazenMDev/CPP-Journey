@@ -8,6 +8,7 @@ int main() {
 			x[r][c] = ' ';
 		}
 	}
+	int ct = 0;
 
 	int rowKnight, colKnight;
 	cin >> rowKnight >> colKnight;
@@ -35,7 +36,7 @@ int main() {
 			coldiff = colKnight - movecol;
 		else
 			coldiff = movecol - colKnight;
-		if ( ( (moverow >= 0 || moverow < 9) && (movecol >= 0 || movecol < 9) ) && ((rowdiff == 1 && coldiff == 2) || (rowdiff == 2 && coldiff == 1)) )
+		if (((moverow >= 0 || moverow < 9) && (movecol >= 0 || movecol < 9)) && ((rowdiff == 1 && coldiff == 2) || (rowdiff == 2 && coldiff == 1)))
 		{
 			x[moverow][movecol] = x[rowKnight][colKnight];
 			x[rowKnight][colKnight] = ' ';
@@ -47,11 +48,13 @@ int main() {
 				}
 				cout << endl;
 			}
+			ct++;
 		}
 
 		if (rowKnight == rowcell && colKnight == colcell)
 		{
 			cout << "We found the target cell!" << endl;
+			cout << "Number of moves: " << ct << endl;
 			break;
 		}
 	}
