@@ -10,15 +10,15 @@ int main() {
             x[r][c] = ' ';
         }
     }
-
+    int ch = 0;
     for (int i = 0; ; i++) {
         X = 0;
         O = 0;
-        if (i % 2 == 0){
+        if (i % 2 == 0) {
             cout << "X turn" << endl;
             X = 1;
         }
-        else{
+        else {
             cout << "O turn" << endl;
             O = 1;
         }
@@ -37,11 +37,12 @@ int main() {
                 cin >> row >> col;
             }
         }
+
         if (X == 1)
             x[row][col] = 'x';
         else
             x[row][col] = 'o';
-            
+
 
 
         cout << endl << x[row][col] << endl;
@@ -52,16 +53,36 @@ int main() {
             }
             cout << endl;
         }
+    
 
+        for (int i = 0; i < 3; i++) {
+            if (x[i][0] != ' ' && x[i][0] == x[i][1] && x[i][1] == x[i][2]) {
+                ch = 1;
+            }
+            if (x[0][i] != ' ' && x[0][i] == x[1][i] && x[1][i] == x[2][i]) {
+                ch = 1;
+            }
+        }
+        if (x[0][0] != ' ' && x[0][0] == x[1][1] && x[1][1] == x[2][2]) {
+            ch = 1;
+        }
+        if (x[0][2] != ' ' && x[0][2] == x[1][1] && x[1][1] == x[2][0]) {
+            ch = 1;
+        }
+        if (ch == 1)
+        {
+            break;
+        }
     }
-
-    if (true)
+    if (X == 1)
     {
         cout << "x won" << endl;
     }
-    if (true)
+    if (O == 1)
     {
         cout << "o won" << endl;
     }
-
 }
+
+
+
