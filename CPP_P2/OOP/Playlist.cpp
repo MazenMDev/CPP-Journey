@@ -22,7 +22,7 @@ public:
     }
 
 
-    Playlist(Playlist &p){
+    Playlist(const Playlist &p){
         numtrack = p.numtrack;
         duration = new int[numtrack]; // Allocate memory for the duration array
         for(int i=0; i<numtrack;i++){
@@ -30,7 +30,7 @@ public:
         }
     }
 
-    Playlist operator = (Playlist &p){
+    Playlist operator = (const Playlist &p){
         if(this != &p){
             delete[] duration;
             numtrack = p.numtrack;
@@ -40,6 +40,19 @@ public:
             }
         }
         return *this; // Return the current object
+    }
+
+    Playlist operator + (const Playlist &p){
+        Playlist newplaylist;
+        newplaylist.numtrack = numtrack + p.numtrack;
+        newplaylist.duration = new int[newplaylist.numtrack]; // Allocate memory for the new duration array
+        for(int i=0; i<numtrack ; i++){
+            newplaylist.duration[i] = duration[i]; // Copy the values from the original array
+        }
+        for(int i=0; i<p.numtrack ; i++){
+            newplaylist.duration[i+numtrack] = p.duration[i]; // Copy the values from the original array
+        }
+        return newplaylist;
     }
 
 
@@ -90,7 +103,13 @@ int main()
     for(int i=0; i<p2.getnumtrack(); i++){
         cout << "Duration of track " << i+1 << ": " << p2.getduration(i) << endl; // Print the duration of each track
     }
-
-
+    Playlist newplaylist = p1 + p2; // Create a new playlist by adding two playlists
+    for(int i=0; i<newplaylist.getnumtrack(); i++){
+        cout << "Duration of track " << i+1 << ": " << newplaylist.getduration(i) << endl; // Print the duration of each track
+    }
+    cout << "The end of the program." << endl;
+    cout << "Press any key to continue..." << endl;
+    cin.ignore();
+    cin.get();
     return 0;
 }
