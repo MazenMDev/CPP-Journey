@@ -165,3 +165,52 @@ public:
         return tot;
     }
 };
+
+class NormalFish {
+private:
+    int wght;  // weight of the fish
+    int dst;   // distance from the eel fish
+
+public:
+    NormalFish() {
+        wght = 0;
+        dst = 0;
+    }
+
+    NormalFish(int a, int b) {
+        wght = a;
+        dst = b;
+    }
+
+    void SetW(int val) {
+        if (val > 0) {
+            wght = val;
+        }
+    }
+
+    void SetD(int val) {
+        if (val > 0) {
+            dst = val;
+        }
+    }
+
+    int GetW() { return wght; }
+    int GetD() { return dst; }
+
+    int isSafeDistance() {
+        if (dst > 400) {
+            return 1;
+        }
+        return 0;
+    }
+
+    int isVolt_Affect_This_Normal_Fish(int volts) {
+        if (dst < 400) {
+            if (volts >= 1.5 * wght) {
+                return 1;
+            }
+        }
+        return 0;
+    }
+};
+
