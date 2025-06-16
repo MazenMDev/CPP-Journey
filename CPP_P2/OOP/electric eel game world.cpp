@@ -1,216 +1,145 @@
 #include <iostream>
-using namespace std;
+usig namespace std;
 
-class ElectrocytCell {
+class Elecroytcell{
     private:
-        char loc;
-        int nNeg;
-        int nPos;
-    public:
-        ElectrocytCell(){
-            loc = ' ';
-            nNeg = 0;
-            nPos = 0;
-        }
-        ElectrocytCell(char a,int b, int c){
-            loc = a;
-            nNeg = b;
-            nPos = c;
-        }
+    int loc;
+    int nNeg;
+    int nPos;
+    
 
-        void setLoc(char value){
-            if(value == 'h' || value == 'b' || value == 't'){
-                loc = value;
+
+    public: 
+
+    Elecroytcell(char a, int b, int c){
+        loc = a;
+        nNeg = b;
+        nPos = c;
+    }
+
+    void SetLoc(char val){
+        if(val == 'H' || val == 'B' || val == 'T'){
+            loc = val;
+        }
+    }
+
+    char GetLoc(){
+        return loc;
+    }
+
+
+    void SetNumNeg(int val){
+        if(val > 0){
+            nNeg = val;
+        }
+    }
+    void SetNumPos(int val){
+            if(val > 0){
+                nPos = val;
             }
         }
-        void setnNeg(int value){
-            if(value > 0){
-                nNeg = value;
-            }
-        }
-        void setnPos(int value){
-            if(value > 0){
-                nPos = value;
-            }
-        }
 
-        char getloc(){
-            return loc;
-        }
-        int getnNeg(){
-            return nNeg;
-        }
-        int getnPos(){
-            return nPos;
-        }
-
-        int WhatisYourState(){
-            return 0;
-        }
-
-        int operator ==(ElectrocytCell another){
-            if (this->loc == another.loc)
-            {
-                return 1;
-            }
-            return 0;
-        }
-    };
-
-class EelFish {
-private:
-    int Len;               // Length of the eel (in cm)
-    int NumCells;          // Number of electrocyte cells
-    ElectrocyteCell* pCells;  // Pointer to a dynamic array of electrocyte cells
-
-public:
-    // Default constructor
-    EelFish() {
-        Len = 0;
-        NumCells = 0;
-        pCells = nullptr;   // no cells initially
+    void getNumNeg(){
+        return nNeg;
+    }
+    void getNumPos(){
+        return nPos;
+    }
+    
+    int What_is_Your_State() {
+        if (nPos > nNeg)
+            return 1; // Active
+        else if (nPos == nNeg)
+            return 0; // Neutral
+        else
+            return -1; // Inactive
     }
 
-    // Parameterized constructor: creates an eel with length, number of cells, and cell array
-    EelFish(int a, int b, ElectrocyteCell *p) {
-        Len = a;
-        NumCells = b;
-        pCells = new ElectrocyteCell[NumCells];  // allocate memory for cells
-        for (int i = 0; i < NumCells; i++) {
-            pCells[i] = p[i];   // copy each cell into pCells
-        }
-    }
-
-    // Copy constructor: copies from another eel object
-    EelFish(EelFish &S) {
-        Len = S.Len;
-        NumCells = S.NumCells;
-        pCells = new ElectrocyteCell[NumCells];
-        for (int i = 0; i < NumCells; i++) {
-            pCells[i] = S.pCells[i];
-        }
-    }
-
-    // Assignment operator: sets this eel equal to another eel
-    void operator=(EelFish &S) {
-        Len = S.Len;
-        NumCells = S.NumCells;
-        delete[] pCells;   // delete old cells to avoid memory leak!
-        pCells = new ElectrocyteCell[NumCells];
-        for (int i = 0; i < NumCells; i++) {
-            pCells[i] = S.pCells[i];
-        }
-    }
-
-    // Destructor: frees memory when the eel object is destroyed
-    ~EelFish() {
-        delete[] pCells;
-    }
-
-    // Getters and Setters for Length
-    int GetLen() { return Len; }
-    void SetLen(int val) {
-        if (val > 0) {
-            Len = val;
-        }
-    }
-
-    // Getters and Setters for Number of cells
-    int GetNum() { return NumCells; }
-    void SetNum(int val) {
-        if (val > 0) {
-            NumCells = val;
-            delete[] pCells;  // clean old array before new allocation
-            pCells = new ElectrocyteCell[NumCells];
-        }
-    }
-
-    // Get and set a single cell by index
-    ElectrocyteCell GetSingleCell(int i) {
-        return pCells[i];
-    }
-    void SetSingleCell(ElectrocyteCell val, int i) {
-        if (i >= 0 && i < NumCells) {
-            pCells[i] = val;
-        }
-    }
-
-    // Count how many cells are at a specific location (H, B, or T)
-    int How_Many_Cells_At_Location(char LocType) {
-        int ct = 0;
-        for (int i = 0; i < NumCells; i++) {
-            if (LocType == pCells[i].GetLoc()) {
-                ct++;
-            }
-        }
-        return ct;
-    }
-
-    // Check if eel is weak (less than 5 cells per cm of length)
-    int isWeakFish() {
-        int ratio = NumCells / Len;
-        if (ratio < 5)
-            return 1;   // weak
-        return 0;       // not weak
-    }
-
-    // Calculate total volts generated by all active cells (each active cell = 0.2 volts)
-    float CalculateTotalVolts() {
-        float tot = 0;
-        for (int i = 0; i < NumCells; i++) {
-            if (pCells[i].What_is_Your_State() == 1) {
-                tot += 0.2;
-            }
-        }
-        return tot;
-    }
-};
-
-class NormalFish {
-private:
-    int wght;  // weight of the fish
-    int dst;   // distance from the eel fish
-
-public:
-    NormalFish() {
-        wght = 0;
-        dst = 0;
-    }
-
-    NormalFish(int a, int b) {
-        wght = a;
-        dst = b;
-    }
-
-    void SetW(int val) {
-        if (val > 0) {
-            wght = val;
-        }
-    }
-
-    void SetD(int val) {
-        if (val > 0) {
-            dst = val;
-        }
-    }
-
-    int GetW() { return wght; }
-    int GetD() { return dst; }
-
-    int isSafeDistance() {
-        if (dst > 400) {
+    int operator==(ElectrocyteCell another){
+        if(this->loc == another.loc){
             return 1;
         }
-        return 0;
+        else{
+            return 0;
+        }
+    }
+}
+
+
+class EelFish{
+    private:
+    int length;
+    int numCells;
+    Elecroytcell *pcells;
+
+    public:
+    EelFish(){
+        length = 0; 
+        numCells = 0;
+        pcells = NULL;
     }
 
-    int isVolt_Affect_This_Normal_Fish(int volts) {
-        if (dst < 400) {
-            if (volts >= 1.5 * wght) {
-                return 1;
-            }
+    EelFish(int a, int b, Elecroytcell *P){
+        length = a;
+        numCells = b;
+        pcells = new ElectrocyteCell[numCells];
+        for(int i=0; i<numCells; i++){
+            pcells[i] = P[i];
         }
-        return 0;
     }
-};
+
+    EelFish(EelFish &s){
+        this->length = s.length;
+        this->numCells = s.numCells;
+        this->pcells = new Elecroytcell[s.numCells];
+        for(int i=0; i<s.numCells; i++){
+            this->pcells[i] = s.pcells[i];
+        }
+    }
+
+    void operator=(EelFish &s){
+        this->length = s.length;
+        this->numCells = s.numCells;    
+        this->pcells = new Elecroytcell[s.numCells];
+        for(int i=0; i<s.numCells; i++){
+            this->pcells[i] = s.pcells[i];
+        }
+    }
+
+    ~EelFish(){
+        delete[] pcells;
+    }
+
+    void SetLength(int val){
+        if(val > 0){
+            length = val;
+        }
+    }
+    int GetLength(){
+        return length;
+    }
+
+    void SetNumCells(int val){
+        if(val > 0){
+            numCells = val;
+            pcells = new Elecroytcell[numCells];
+        }
+    }
+    int GetNumCells(){
+        return numCells;
+    }
+
+    Elecroytcell Getsinglecell(int i){
+        return pcells[i];
+    }
+    void SetSingleCell(int i, Elecroytcell val){
+        if(i >= 0 && i < numCells){
+            pcells[i]  = val;
+        }
+    }
+
+
+    
+
+}
 
